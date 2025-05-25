@@ -11,6 +11,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 
 public class TestAndroidOptions {
 
@@ -26,7 +28,8 @@ public class TestAndroidOptions {
                 .setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2)
                 .setApp(appUrl)
                 .setUdid("emulator-5554")
-                .setPlatformName(MobilePlatform.ANDROID);
+                .setPlatformName(MobilePlatform.ANDROID).setAvd("Pixel_9_Pro_XL")
+                .setAvdLaunchTimeout(Duration.of(180, ChronoUnit.SECONDS));
 
         URL url = new URL("http://0.0.0.0:4723/");
         AppiumDriver driver = new AndroidDriver(url, uiAutomator2Options);
