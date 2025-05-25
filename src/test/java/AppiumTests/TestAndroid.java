@@ -1,7 +1,6 @@
 package AppiumTests;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileCommand;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.AutomationName;
 import io.appium.java_client.remote.MobilePlatform;
@@ -10,12 +9,14 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 public class TestAndroid {
 
     @org.testng.annotations.Test
-    public void testAndroid() throws MalformedURLException {
+    public void testAndroid() throws MalformedURLException, URISyntaxException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
         capabilities.setCapability("appium:automationName", AutomationName.ANDROID_UIAUTOMATOR2);
@@ -30,7 +31,7 @@ public class TestAndroid {
         //capabilities.setCapability("appium:appPackage", "com.google.android.gm");
         //capabilities.setCapability("appium:appActivity", "com.google.android.gm.ComposeActivityGmail");
 
-        URL url = new URL("http://0.0.0.0:4723/");
+        URL url = new URI("http://0.0.0.0:4723/").toURL();
         AppiumDriver driver = new AndroidDriver(url, capabilities);
     }
 }
