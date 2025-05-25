@@ -1,0 +1,34 @@
+package AppiumTests;
+
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
+import io.appium.java_client.remote.AutomationName;
+import io.appium.java_client.remote.MobilePlatform;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class TestAndroidOptions {
+
+    @org.testng.annotations.Test
+    public void testAndroid() throws MalformedURLException {
+        String appUrl = System.getProperty("user.dir")+ File.separator+"src"+File.separator+"main"+File.separator
+                +"resources"+File.separator+"ApiDemos-debug.apk";
+
+        //Set capabilities using Options
+        UiAutomator2Options uiAutomator2Options = new UiAutomator2Options();
+        uiAutomator2Options
+                .setDeviceName("Pixel 9 Pro XL")
+                .setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2)
+                .setApp(appUrl)
+                .setUdid("emulator-5554")
+                .setPlatformName(MobilePlatform.ANDROID);
+
+        URL url = new URL("http://0.0.0.0:4723/");
+        AppiumDriver driver = new AndroidDriver(url, uiAutomator2Options);
+    }
+}
